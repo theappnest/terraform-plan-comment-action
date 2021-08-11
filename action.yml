@@ -1,0 +1,20 @@
+name: terraform-plan-comment-action
+description: Creates a comment with all changes from `terraform plan`.
+author: DREST LTD
+inputs:
+  token:
+    description: GitHub token. Defaults to secrets.GITHUB_TOKEN.
+    required: false
+    default: ${{ github.token }}
+  path:
+    description: A path glob to check for `terraform plan` output files.
+    required: false
+  plan:
+    description: The output of `terraform plan`.
+    required: false
+outputs:
+  modules:
+    description: An array of paths to Terraform modules.
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
