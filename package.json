@@ -1,0 +1,31 @@
+{
+  "name": "terraform-plan-comment-action",
+  "version": "0.0.0",
+  "private": true,
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc && ncc build --source-map",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0",
+    "ansi-regex": "^6.0.0",
+    "glob": "^7.1.7"
+  },
+  "devDependencies": {
+    "@octokit/webhooks-types": "^4.3.0",
+    "@types/glob": "^7.1.4",
+    "@types/node": "^16.4.12",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "@vercel/ncc": "^0.29.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "2.3.2",
+    "typescript": "^4.1.3"
+  }
+}
