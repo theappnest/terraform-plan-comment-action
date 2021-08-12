@@ -219,11 +219,14 @@ function trimPrefix(path, prefix) {
     const re = new RegExp(`^${escaped}/?`);
     return path.replace(re, '');
 }
+function trimExt(path) {
+    return path.replace(/\.\w*$/, '');
+}
 function parsePlanDir(path, prefix) {
     const paths = glob_1.glob.sync(path, { nodir: true });
     return paths.reduce((acc, file) => {
         const name = prefix ? trimPrefix(file, prefix) : file;
-        return acc + parsePlan(name, fs_1.readFileSync(file, 'utf8'));
+        return acc + parsePlan(trimExt(name), fs_1.readFileSync(file, 'utf8'));
     }, '');
 }
 exports.parsePlanDir = parsePlanDir;
