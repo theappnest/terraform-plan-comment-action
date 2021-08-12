@@ -8,6 +8,7 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
+    "@actions/artifact": "^0.5.2",
     "@actions/core": "^1.4.0",
     "@actions/github": "^5.0.0",
     "ansi-regex": "^6.0.0",

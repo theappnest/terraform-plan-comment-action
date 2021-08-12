@@ -28,7 +28,7 @@ jobs:
   modules:
     runs-on: ubuntu-latest
     steps:
-      - uses: theappnest/terraform-monorepo-action@master
+      - uses: theappnest/terraform-monorepo-action@v1
         id: modules
     outputs:
       modules: ${{ steps.modules.outputs.modules }}
@@ -48,36 +48,23 @@ jobs:
       - run: terraform init
       - run: terraform plan
         id: plan
-      - run: |
-          mkdir -p "$(dirname "${{ github.workspace }}/plan/${{ matrix.module }}")"
-          cat <<- EOF > ${{ github.workspace }}/plan/${{ matrix.module }}
-          ${{ steps.plan.outputs.stdout }}
-          EOF
-      - uses: actions/upload-artifact@v2
+      - uses: theappnest/terraform-upload-plan-action@v1
         with:
-          name: terraform-plan
-          path: ${{ github.workspace }}/plan/**
-          retention-days: 1
+          module: ${{ matrix.module }}
+          plan: ${{ steps.plan.outputs.stdout }}
 
   comment:
     runs-on: ubuntu-latest
     needs: terraform
-    defaults:
-      run:
-        working-directory: plan
     steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: terraform-plan
-      - uses: theappnest/terraform-plan-comment-action@adam/create-action
-        with:
-          path: '**'
+      - uses: theappnest/terraform-plan-comment-action@v1
 ```
 
 ## Inputs
 
-> NOTE: Either `plan` or `path` is required.
+> NOTE: Defaults to getting plan from artifact if neither `path` nor `plan` are specified.
 
 - `token` (optional) GitHub token. Defaults to secrets.GITHUB_TOKEN.
+- `name` (optional) The name of the artifact containing the output of `terraform plan`. Defaults to `terraform-plan`.
 - `path` (optional) A path glob to check for `terraform plan` output files.
 - `plan` (optional) The output of `terraform plan`.
