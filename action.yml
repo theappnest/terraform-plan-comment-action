@@ -6,6 +6,10 @@ inputs:
     description: GitHub token. Defaults to secrets.GITHUB_TOKEN.
     required: false
     default: ${{ github.token }}
+  name:
+    description: The name of the artifact containing the output of `terraform plan`.
+    required: false
+    default: terraform-plan
   path:
     description: A path glob to check for `terraform plan` output files.
     required: false

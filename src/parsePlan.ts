@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs'
 import AnsiRegex from 'ansi-regex'
+import { glob } from 'glob'
 
 const ansiRegex = AnsiRegex()
 const changesRegex = /^(  *)([+-])/
@@ -47,6 +48,20 @@ ${diff}
 `
 }
 
-export function parsePlanFile(path: string): string {
-  return parsePlan(path, readFileSync(path, 'utf8'))
+function trimPrefix(path: string, prefix: string) {
+  const escaped = prefix.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
+  const re = new RegExp(`^${escaped}/?`)
+  return path.replace(re, '')
+}
+
+function trimExt(path: string) {
+  return path.replace(/\.\w*$/, '')
+}
+
+export function parsePlanDir(path: string, prefix?: string): string {
+  const paths = glob.sync(path, { nodir: true })
+  return paths.reduce((acc, file) => {
+    const name = prefix ? trimPrefix(file, prefix) : file
+    return acc + parsePlan(trimExt(name), readFileSync(file, 'utf8'))
+  }, '')
 }
