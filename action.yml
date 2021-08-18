@@ -16,9 +16,6 @@ inputs:
   plan:
     description: The output of `terraform plan`.
     required: false
-outputs:
-  modules:
-    description: An array of paths to Terraform modules.
 runs:
   using: 'node12'
   main: 'dist/index.js'
