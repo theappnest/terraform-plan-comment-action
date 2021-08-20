@@ -48,16 +48,19 @@ jobs:
       - run: terraform init
       - run: terraform plan
         id: plan
-      - uses: theappnest/terraform-upload-plan-action@v1
+      - uses: theappnest/create-artifact-action@v1
         with:
-          module: ${{ matrix.module }}
-          plan: ${{ steps.plan.outputs.stdout }}
+          name: terraform-plan
+          path: ${{ matrix.module }}
+          content: ${{ steps.plan.outputs.stdout }}
 
   comment:
     runs-on: ubuntu-latest
     needs: terraform
     steps:
       - uses: theappnest/terraform-plan-comment-action@v1
+        with:
+          name: terraform-plan
 ```
 
 ## Inputs
