@@ -6,10 +6,11 @@ import { download } from './download'
 import { parsePlan, parsePlanDir } from './parsePlan'
 
 async function run(): Promise<void> {
-  if (!context.payload.pull_request) {
-    return
-  }
   try {
+    if (!context.payload.pull_request) {
+      throw new Error(`Unsupported event: ${context.eventName}`)
+    }
+
     const token = core.getInput('token', { required: true })
     const name = core.getInput('name')
     const path = core.getInput('path')

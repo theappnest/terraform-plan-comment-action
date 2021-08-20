@@ -129,10 +129,10 @@ const download_1 = __nccwpck_require__(5933);
 const parsePlan_1 = __nccwpck_require__(7450);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        if (!github_1.context.payload.pull_request) {
-            return;
-        }
         try {
+            if (!github_1.context.payload.pull_request) {
+                throw new Error(`Unsupported event: ${github_1.context.eventName}`);
+            }
             const token = core.getInput('token', { required: true });
             const name = core.getInput('name');
             const path = core.getInput('path');
