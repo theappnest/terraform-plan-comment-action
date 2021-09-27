@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs'
+import * as core from '@actions/core'
 import AnsiRegex from 'ansi-regex'
 import { glob } from 'glob'
 
@@ -13,8 +14,11 @@ const summaryPrefix = 'Plan: '
 
 export function parsePlan(title: string, content: string): string {
   if (content.includes(noChanges)) {
+    core.setOutput('terraform-changes', 'false')
     return ''
   }
+
+  core.setOutput('terraform-changes', 'true')
 
   const lines = content
     .split('\n')
