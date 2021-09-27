@@ -168,12 +168,32 @@ run();
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.parsePlanDir = exports.parsePlan = void 0;
 const fs_1 = __nccwpck_require__(5747);
+const core = __importStar(__nccwpck_require__(2186));
 const ansi_regex_1 = __importDefault(__nccwpck_require__(5063));
 const glob_1 = __nccwpck_require__(1957);
 const ansiRegex = ansi_regex_1.default();
@@ -187,8 +207,10 @@ const summaryPrefix = 'Plan: ';
 function parsePlan(title, content) {
     var _a;
     if (content.includes(noChanges)) {
+        core.setOutput('terraform-changes', 'false');
         return '';
     }
+    core.setOutput('terraform-changes', 'true');
     const lines = content
         .split('\n')
         .filter((line) => !line.includes(refreshingState))
