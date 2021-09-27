@@ -16,6 +16,9 @@ inputs:
   plan:
     description: The output of `terraform plan`.
     required: false
+outputs:
+  terraform-changes:
+    description: returns true if there are changes in terraform, else false
 runs:
   using: 'node12'
   main: 'dist/index.js'
