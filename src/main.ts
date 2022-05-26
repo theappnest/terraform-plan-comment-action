@@ -21,21 +21,21 @@ async function run(): Promise<void> {
     }
 
     let comment: string
-    // let commentId: string
+    let commentId: string
 
     if (path) {
       comment = parsePlanDir(path)
-      // commentId = crypto.createHmac('sha256', path)
+      commentId = path
     } else if (plan) {
       comment = parsePlan(context.repo.repo, plan)
-      // commentId = crypto.createHmac('sha256', plan)
+      commentId = plan
     } else {
       const dir = await download(name)
       comment = parsePlanDir(join(dir, '**'), dir)
-      // commentId = crypto.createHmac('sha256', path)
+      commentId = name
     }
 
-    await createComment(token, comment, path)
+    await createComment(token, comment, commentId)
   } catch (error) {
     core.setFailed(error.message)
   }
