@@ -21,17 +21,21 @@ async function run(): Promise<void> {
     }
 
     let comment: string
+    let commentId: string
 
     if (path) {
       comment = parsePlanDir(path)
+      commentId = btoa(path)
     } else if (plan) {
       comment = parsePlan(context.repo.repo, plan)
+      commentId = btoa(plan)
     } else {
       const dir = await download(name)
       comment = parsePlanDir(join(dir, '**'), dir)
+      commentId = btoa(path)
     }
 
-    await createComment(token, comment)
+    await createComment(token, comment, commentId)
   } catch (error) {
     core.setFailed(error.message)
   }
