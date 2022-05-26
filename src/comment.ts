@@ -7,9 +7,10 @@ const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comme
 export async function createComment(
   token: string,
   content: string,
-  commentId: string,
+  path: string,
+  // commentId: string,
 ): Promise<void> {
-  const body = header + (content || `No changes detected.`) + footer + commentId
+  const body = header + (content || `No changes detected.`) + footer + path
 
   const octokit = getOctokit(token)
 
@@ -21,9 +22,7 @@ export async function createComment(
     owner: context.repo.owner,
   })
 
-  const prev = comments.data.find((item) =>
-    item.body?.endsWith(footer + commentId),
-  )
+  const prev = comments.data.find((item) => item.body?.endsWith(footer + path))
   if (prev) {
     await octokit.rest.issues.updateComment({
       comment_id: prev.id,
