@@ -8,9 +8,17 @@ export async function createComment(
   token: string,
   content: string,
   commentId: string,
+  caller: string,
   // commentId: string,
 ): Promise<void> {
-  const body = header + (content || `No changes detected.`) + footer + commentId
+  const callingModule = caller ? `### Caller: ${caller}` : caller
+
+  const body =
+    header +
+    callingModule +
+    (content || `No changes detected.`) +
+    footer +
+    commentId
 
   const octokit = getOctokit(token)
 

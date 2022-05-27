@@ -16,6 +16,9 @@ inputs:
   plan:
     description: The output of `terraform plan`.
     required: false
+  caller:
+    description: Module which plan is for
+    required: false
 outputs:
   terraform-changes:
     description: returns true if there are changes in terraform, else false
