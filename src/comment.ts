@@ -9,7 +9,6 @@ export async function createComment(
   content: string,
   commentId: string,
   caller: string,
-  // commentId: string,
 ): Promise<void> {
   const callingModule = caller ? `### Caller: ${caller}` : caller
 
