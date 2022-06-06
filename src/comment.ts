@@ -8,13 +8,11 @@ export async function createComment(
   token: string,
   content: string,
   commentId: string,
-  caller: string,
+  subheader: string,
 ): Promise<void> {
-  const callingModule = caller ? `### Caller: ${caller}` : caller
-
   const body =
     header +
-    callingModule +
+    (subheader ? `### ${subheader}` : subheader) +
     (content || `No changes detected.`) +
     footer +
     commentId
