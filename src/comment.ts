@@ -1,7 +1,6 @@
 import { context, getOctokit } from '@actions/github'
 import { PullRequestEvent } from '@octokit/webhooks-types'
 
-const header = `## Terraform infrastructure changes\n\n`
 const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comment](https://github.com/theappnest/terraform-plan-comment-action).\nComment ID: `
 
 export async function createComment(
@@ -9,6 +8,7 @@ export async function createComment(
   content: string,
   commentId: string,
   caller: string,
+  header: string,
 ): Promise<void> {
   const callingModule = caller ? `### Caller: ${caller}` : caller
 

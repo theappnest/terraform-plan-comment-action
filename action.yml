@@ -19,6 +19,10 @@ inputs:
   caller:
     description: Module which plan is for
     required: false
+  header:
+    description: Header to be displayed in comment
+    required: false
+    default: '## Terraform infrastructure changes\n\n'
 outputs:
   terraform-changes:
     description: returns true if there are changes in terraform, else false

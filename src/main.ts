@@ -16,6 +16,7 @@ async function run(): Promise<void> {
     const path = core.getInput('path')
     const plan = core.getInput('plan')
     const caller = core.getInput('caller')
+    const header = core.getInput('header')
 
     if (!name && !path && !plan) {
       throw new Error('Either `name`, `path` or `plan` must be set.')
@@ -36,7 +37,7 @@ async function run(): Promise<void> {
       commentId = name
     }
 
-    await createComment(token, comment, commentId, caller)
+    await createComment(token, comment, commentId, caller, header)
   } catch (error) {
     core.setFailed(error.message)
   }
