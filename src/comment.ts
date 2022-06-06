@@ -8,14 +8,8 @@ export async function createComment(
   content: string,
   commentId: string,
   header: string,
-  subheader: string,
 ): Promise<void> {
-  const body =
-    header +
-    (subheader ? `### ${subheader}` : subheader) +
-    (content || `No changes detected.`) +
-    footer +
-    commentId
+  const body = header + (content || `No changes detected.`) + footer + commentId
 
   const octokit = getOctokit(token)
 

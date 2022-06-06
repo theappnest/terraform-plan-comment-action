@@ -17,13 +17,9 @@ inputs:
     description: The output of `terraform plan`.
     required: false
   header:
-    description: Top level header
+    description: Header for comment message
     required: false
     default: '## Terraform infrastructure changes\n\n'
-  subheader:
-    description: Second level header
-    required: false
-    default: ''
 outputs:
   terraform-changes:
     description: returns true if there are changes in terraform, else false
