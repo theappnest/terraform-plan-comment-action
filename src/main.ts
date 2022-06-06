@@ -15,6 +15,7 @@ async function run(): Promise<void> {
     const name = core.getInput('name')
     const path = core.getInput('path')
     const plan = core.getInput('plan')
+    const header = core.getInput('header')
     const subheader = core.getInput('subheader')
 
     if (!name && !path && !plan) {
@@ -36,7 +37,7 @@ async function run(): Promise<void> {
       commentId = name
     }
 
-    await createComment(token, comment, commentId, subheader)
+    await createComment(token, comment, commentId, header, subheader)
   } catch (error) {
     core.setFailed(error.message)
   }
