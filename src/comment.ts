@@ -1,7 +1,7 @@
 import { context, getOctokit } from '@actions/github'
 import { PullRequestEvent } from '@octokit/webhooks-types'
 
-const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comment](https://github.com/theappnest/terraform-plan-comment-action).\nComment ID: `
+const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comment](https://github.com/theappnest/terraform-plan-comment-action).<!-- CommentID: `
 
 export async function createComment(
   token: string,
@@ -9,7 +9,9 @@ export async function createComment(
   commentId: string,
   header: string,
 ): Promise<void> {
-  const body = header + (content || `No changes detected.`) + footer + commentId
+  const body = `${
+    header + (content || `No changes detected.`) + footer + commentId
+  }-->`
 
   const octokit = getOctokit(token)
 
@@ -22,7 +24,7 @@ export async function createComment(
   })
 
   const prev = comments.data.find((item) =>
-    item.body?.endsWith(footer + commentId),
+    item.body?.endsWith(`${footer + commentId}-->`),
   )
   if (prev) {
     await octokit.rest.issues.updateComment({
