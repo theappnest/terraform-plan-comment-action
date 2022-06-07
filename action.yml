@@ -16,6 +16,10 @@ inputs:
   plan:
     description: The output of `terraform plan`.
     required: false
+  header:
+    description: Header for comment message
+    required: false
+    default: '## Terraform infrastructure changes\n\n'
 outputs:
   terraform-changes:
     description: returns true if there are changes in terraform, else false

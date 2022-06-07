@@ -18,10 +18,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.createComment = void 0;
 const github_1 = __nccwpck_require__(5438);
-const header = `## Terraform infrastructure changes\n\n`;
-const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comment](https://github.com/theappnest/terraform-plan-comment-action).`;
-function createComment(token, content) {
+function createComment(token, content, commentId, header) {
     return __awaiter(this, void 0, void 0, function* () {
+        const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comment](https://github.com/theappnest/terraform-plan-comment-action).<!-- CommentID: ${commentId} -->`;
         const body = header + (content || `No changes detected.`) + footer;
         const octokit = github_1.getOctokit(token);
         const { pull_request: pr } = github_1.context.payload;
@@ -137,6 +136,7 @@ function run() {
             const name = core.getInput('name');
             const path = core.getInput('path');
             const plan = core.getInput('plan');
+            const header = core.getInput('header');
             if (!name && !path && !plan) {
                 throw new Error('Either `name`, `path` or `plan` must be set.');
             }
@@ -151,7 +151,7 @@ function run() {
                 const dir = yield download_1.download(name);
                 comment = parsePlan_1.parsePlanDir(path_1.join(dir, '**'), dir);
             }
-            yield comment_1.createComment(token, comment);
+            yield comment_1.createComment(token, comment, name, header);
         }
         catch (error) {
             core.setFailed(error.message);

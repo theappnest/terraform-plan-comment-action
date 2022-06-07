@@ -15,6 +15,7 @@ async function run(): Promise<void> {
     const name = core.getInput('name')
     const path = core.getInput('path')
     const plan = core.getInput('plan')
+    const header = core.getInput('header')
 
     if (!name && !path && !plan) {
       throw new Error('Either `name`, `path` or `plan` must be set.')
@@ -31,7 +32,7 @@ async function run(): Promise<void> {
       comment = parsePlanDir(join(dir, '**'), dir)
     }
 
-    await createComment(token, comment)
+    await createComment(token, comment, name, header)
   } catch (error) {
     core.setFailed(error.message)
   }
