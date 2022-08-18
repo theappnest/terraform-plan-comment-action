@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.2.0...v1.3.0) (2022-06-07)
+
+
+### Features
+
+* allow multiple comments per issue ([#120](https://github.com/theappnest/terraform-plan-comment-action/issues/120)) ([0b9f127](https://github.com/theappnest/terraform-plan-comment-action/commit/0b9f1277828db85e46660aec3ac0f27cfc9cecf6))
+
 ## [1.2.0](https://www.github.com/theappnest/terraform-plan-comment-action/compare/v1.1.0...v1.2.0) (2021-09-27)
 
 
