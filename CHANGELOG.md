@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.0...v1.3.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* print meaningful message in case of error ([#181](https://github.com/theappnest/terraform-plan-comment-action/issues/181)) ([b2a40e7](https://github.com/theappnest/terraform-plan-comment-action/commit/b2a40e783169175626db365eca4292d912e28d00))
+
 ## [1.3.0](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.2.0...v1.3.0) (2022-06-07)
 
 
