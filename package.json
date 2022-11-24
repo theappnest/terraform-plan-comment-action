@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@actions/artifact": "^0.5.2",
-    "@actions/core": "^1.5.0",
+    "@actions/core": "^1.9.1",
     "@actions/github": "^5.0.0",
     "ansi-regex": "^6.0.0",
     "glob": "^7.1.7"
