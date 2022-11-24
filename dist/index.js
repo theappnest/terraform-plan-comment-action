@@ -240,7 +240,9 @@ ${diff}
 \`\`\`
 </details>
 `
-        : `#### :warning: Something went wrong for \`${title}\` module. Check logs.`;
+        : `
+#### :warning: Something went wrong for \`${title}\` module. Check logs.
+`;
 }
 exports.parsePlan = parsePlan;
 function trimPrefix(path, prefix) {
