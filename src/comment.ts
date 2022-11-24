@@ -7,9 +7,13 @@ export async function createComment(
   commentId: string,
   header: string,
 ): Promise<void> {
-  const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comment](https://github.com/theappnest/terraform-plan-comment-action).<!-- CommentID: ${commentId} -->`
-
-  const body = header + (content || `No changes detected.`) + footer
+  const footer = `<!-- CommentID: ${commentId} -->`
+  const body = `
+## ${header}
+${content || 'No changes detected.'}
+---
+<sub>This comment was generated with [terraform-plan-comment-action](https://github.com/theappnest/terraform-plan-comment-action).</sub>
+${footer}`
 
   const octokit = getOctokit(token)
 

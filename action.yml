@@ -19,7 +19,7 @@ inputs:
   header:
     description: Header for comment message
     required: false
-    default: '## Terraform infrastructure changes\n\n'
+    default: 'Terraform infrastructure changes'
 outputs:
   terraform-changes:
     description: returns true if there are changes in terraform, else false
