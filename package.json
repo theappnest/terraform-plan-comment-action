@@ -8,9 +8,9 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@actions/artifact": "^0.5.2",
-    "@actions/core": "^1.9.1",
-    "@actions/github": "^5.0.0",
+    "@actions/artifact": "^1.1.0",
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
     "ansi-regex": "^6.0.1",
     "glob": "^7.1.7"
   },
