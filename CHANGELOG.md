@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.1...v1.3.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* ensure message ends with newline ([#195](https://github.com/theappnest/terraform-plan-comment-action/issues/195)) ([446cf22](https://github.com/theappnest/terraform-plan-comment-action/commit/446cf22b175e4ecf162adf9a30e40caf798380c5))
+
 ## [1.3.1](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.0...v1.3.1) (2022-11-24)
 
 
