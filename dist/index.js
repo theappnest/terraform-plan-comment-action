@@ -20,8 +20,13 @@ exports.createComment = void 0;
 const github_1 = __nccwpck_require__(5438);
 function createComment(token, content, commentId, header) {
     return __awaiter(this, void 0, void 0, function* () {
-        const footer = `\n\n---\n\nThis comment was generated with [terraform-plan-comment](https://github.com/theappnest/terraform-plan-comment-action).<!-- CommentID: ${commentId} -->`;
-        const body = header + (content || `No changes detected.`) + footer;
+        const footer = `<!-- CommentID: ${commentId} -->`;
+        const body = `
+## ${header}
+${content || 'No changes detected.'}
+---
+<sub>This comment was generated with [terraform-plan-comment-action](https://github.com/theappnest/terraform-plan-comment-action).</sub>
+${footer}`;
         const octokit = github_1.getOctokit(token);
         const { pull_request: pr } = github_1.context.payload;
         const comments = yield octokit.rest.issues.listComments({
@@ -224,7 +229,8 @@ function parsePlan(title, content) {
     const diff = lines
         .join('\n')
         .split(seperator, i + 1)[i].trim();
-    return `
+    return summary
+        ? `
 #### \`${title}\`: ${summary}
 
 <details><summary>Show Plan</summary>
@@ -233,7 +239,8 @@ function parsePlan(title, content) {
 ${diff}
 \`\`\`
 </details>
-`;
+`
+        : `#### :warning: Something went wrong for \`${title}\` module. Check logs.`;
 }
 exports.parsePlan = parsePlan;
 function trimPrefix(path, prefix) {
