@@ -40,7 +40,8 @@ export function parsePlan(title: string, content: string): string {
     .split(seperator, i + 1)
     [i].trim()
 
-  return `
+  return summary
+    ? `
 #### \`${title}\`: ${summary}
 
 <details><summary>Show Plan</summary>
@@ -50,6 +51,7 @@ ${diff}
 \`\`\`
 </details>
 `
+    : `#### :warning: Something went wrong for \`${title}\` module. Check logs.`
 }
 
 function trimPrefix(path: string, prefix: string) {
