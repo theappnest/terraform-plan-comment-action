@@ -51,7 +51,9 @@ ${diff}
 \`\`\`
 </details>
 `
-    : `#### :warning: Something went wrong for \`${title}\` module. Check logs.`
+    : `
+#### :warning: Something went wrong for \`${title}\` module. Check logs.
+`
 }
 
 function trimPrefix(path: string, prefix: string) {
