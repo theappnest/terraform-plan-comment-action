@@ -15,7 +15,7 @@ jobs:
           release-type: node
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: tag major versions
         if: ${{ steps.release.outputs.release_created }}
         run: |
