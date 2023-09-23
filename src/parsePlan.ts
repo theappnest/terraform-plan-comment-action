@@ -35,9 +35,8 @@ export function parsePlan(title: string, content: string): string {
     .find((line) => line.startsWith(summaryPrefix))
     ?.slice(summaryPrefix.length)
 
-
   if (content.includes(outputChanges)) {
-    if (summary === undefined || ! summary.match((('?!^\d')))) {
+    if (summary === undefined || !summary.match('((?!^\\d))')) {
       core.setOutput('terraform-changes', 'false')
       return ''
     }
