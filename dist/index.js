@@ -206,6 +206,7 @@ const changesRegex = /^(  *)([+-])/;
 const updatedRegex = /^(  *)~/;
 const noChanges = 'Your infrastructure matches the configuration';
 const objectsChanged = 'Objects have changed outside of Terraform';
+const outputChanges = 'Changes to Outputs';
 const refreshingState = 'Refreshing state...';
 const seperator = '─'.repeat(77);
 const summaryPrefix = 'Plan: ';
@@ -225,6 +226,12 @@ function parsePlan(title, content) {
         .replace(updatedRegex, '!$1'));
     const summary = (_a = lines
         .find((line) => line.startsWith(summaryPrefix))) === null || _a === void 0 ? void 0 : _a.slice(summaryPrefix.length);
+    if (content.includes(outputChanges)) {
+        if (summary === undefined || !summary.match('((?!^\\d))')) {
+            core.setOutput('terraform-changes', 'false');
+            return '';
+        }
+    }
     const i = content.includes(objectsChanged) ? 1 : 0;
     const diff = lines
         .join('\n')
