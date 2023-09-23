@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.2...v1.3.3) (2023-09-23)
+
+
+### Bug Fixes
+
+* parsePlan, ignore output only changes ([#295](https://github.com/theappnest/terraform-plan-comment-action/issues/295)) ([332e909](https://github.com/theappnest/terraform-plan-comment-action/commit/332e909a773c8c62064ee2674e97a4f563895f28))
+
 ## [1.3.2](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.1...v1.3.2) (2022-11-24)
 
 
