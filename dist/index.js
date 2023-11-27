@@ -216,7 +216,6 @@ function parsePlan(title, content) {
         core.setOutput('terraform-changes', 'false');
         return '';
     }
-    core.setOutput('terraform-changes', 'true');
     const lines = content
         .split('\n')
         .filter((line) => !line.includes(refreshingState))
@@ -232,6 +231,7 @@ function parsePlan(title, content) {
             return '';
         }
     }
+    core.setOutput('terraform-changes', 'true');
     const i = content.includes(objectsChanged) ? 1 : 0;
     const diff = lines
         .join('\n')
