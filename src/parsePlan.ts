@@ -19,8 +19,6 @@ export function parsePlan(title: string, content: string): string {
     return ''
   }
 
-  core.setOutput('terraform-changes', 'true')
-
   const lines = content
     .split('\n')
     .filter((line) => !line.includes(refreshingState))
@@ -41,6 +39,8 @@ export function parsePlan(title: string, content: string): string {
       return ''
     }
   }
+
+  core.setOutput('terraform-changes', 'true')
 
   const i = content.includes(objectsChanged) ? 1 : 0
   const diff = lines
