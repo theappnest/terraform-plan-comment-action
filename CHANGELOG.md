@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.3...v1.3.4) (2023-11-27)
+
+
+### Bug Fixes
+
+* move check above setting terraform-changes ([be7ab1d](https://github.com/theappnest/terraform-plan-comment-action/commit/be7ab1d85d9620178fa7cab4b8d5a815cbd0e685))
+
 ## [1.3.3](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.2...v1.3.3) (2023-09-23)
 
 
