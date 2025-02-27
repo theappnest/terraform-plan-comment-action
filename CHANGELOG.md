@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.5](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.4...v1.3.5) (2025-02-27)
+
+
+### Bug Fixes
+
+* bump version ([#326](https://github.com/theappnest/terraform-plan-comment-action/issues/326)) ([70a6124](https://github.com/theappnest/terraform-plan-comment-action/commit/70a612426fcb80f10f64d038a4eaea03bfbe4033))
+* lint ([#329](https://github.com/theappnest/terraform-plan-comment-action/issues/329)) ([584944d](https://github.com/theappnest/terraform-plan-comment-action/commit/584944dab6aceaca568e12814db90a8fa11de5eb))
+* new library needs different client type ([#328](https://github.com/theappnest/terraform-plan-comment-action/issues/328)) ([fcce324](https://github.com/theappnest/terraform-plan-comment-action/commit/fcce3243e25003652bf097bc7a0f075f2b89e66d))
+
 ## [1.3.4](https://github.com/theappnest/terraform-plan-comment-action/compare/v1.3.3...v1.3.4) (2025-02-27)
 
 
